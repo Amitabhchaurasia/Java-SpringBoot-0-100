@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springwebtutorial.springwebtutorila.dto.EmployeeDTO;
 import com.springwebtutorial.springwebtutorila.entity.EmployeeEntity;
 import com.springwebtutorial.springwebtutorila.repository.EmployeeRepository;
+import com.springwebtutorial.springwebtutorila.service.EmployeeService;
 
 import java.time.LocalDate;
 
@@ -25,24 +26,29 @@ public class EmployeeController {
 //     return "This is from msg";
 //    }
 
-private final EmployeeRepository employeeRepository;
-EmployeeController(EmployeeRepository employeeRepository){
-    this.employeeRepository = employeeRepository;
+// private final EmployeeRepository employeeRepository;
+// EmployeeController(EmployeeRepository employeeRepository){
+//     this.employeeRepository = employeeRepository;
+// }
+
+private final EmployeeService employeeService;
+EmployeeController(EmployeeService employeeService){
+    this.employeeService = employeeService;
 }
 
 @GetMapping("/{id}")
-public EmployeeEntity getEmpById(@PathVariable long id){
-    return employeeRepository.findById(id).orElse(null);
+public EmployeeDTO getEmpById(@PathVariable long id){
+    return employeeService.getEmpById(id);
 }
 
 @GetMapping
-public List<EmployeeEntity> getAllEmp(@RequestParam(required = false) Integer age, @RequestParam(required = false) String sortBy){
-    return employeeRepository.findAll();
+public List<EmployeeDTO> getAllEmp(@RequestParam(required = false) Integer age, @RequestParam(required = false) String sortBy){
+    return employeeService.getAllEmp(age, sortBy);
 }
 
 @PostMapping
-public EmployeeEntity addEmp(@RequestBody EmployeeEntity employeeEntity){
-    return employeeRepository.save(employeeEntity);
+public EmployeeDTO addEmp(@RequestBody EmployeeDTO EmployeeDTO){
+    return employeeService.addEmp(EmployeeDTO);
 
 }
     
