@@ -1,7 +1,6 @@
 package com.week2.work.week2work.DTO;
-
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +15,5 @@ public class DepartmentDto {
     private String title;
     private boolean active;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private String createdAt;
+    private LocalDate createdAt;
 }
