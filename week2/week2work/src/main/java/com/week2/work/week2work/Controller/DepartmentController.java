@@ -1,5 +1,6 @@
 package com.week2.work.week2work.Controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.week2.work.week2work.DTO.DepartmentDto;
@@ -13,8 +14,8 @@ public class DepartmentController {
     DepartmentService ds;
 
     @GetMapping
-    public String getDepartment() {
-        return "Department";
+    public List<DepartmentDto> getDepartment() {
+        return ds.getAll();
     }
 
     @PostMapping
